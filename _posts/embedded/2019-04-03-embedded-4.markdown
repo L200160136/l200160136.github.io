@@ -1,0 +1,101 @@
+---
+layout: post
+title:  "Praktikum Sistem Embedded Modul 4"
+date:   2019-04-03 17:06:00 +0700
+categories: embedded
+permalink: "/:categories/:title"
+---
+
+<h2>Alat yang diperlukan:</h2>
+<hr>
+
+<ul>
+    <li>Board Arduino</li>
+    <li>7-Segment</li>
+    <li>Resistor 1 KOhm dan 220Ohm</li>
+    <li>LDR</li>
+    <li>LED</li>
+    <li>Breadboard</li>
+</ul>
+
+<h2>Percobaan</h2>
+<hr>
+<h3>Tujuan</h3>
+Menggunakan LDR sebagai sensor cahaya untuk mengontrol tingkat kecerahan LED.
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+int potPin = A0;
+int ledPin = 9;
+int potValue = 0;
+int ledValue = 0;
+
+void setup() {
+    // put your setup code here, to run once:
+    Serial.begin(9600);
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    potValue = analogRead(potPin);
+    ledValue = map(potValue, 0, 1023, 0, 255);
+    analogWrite(ledPin, ledValue);
+    delay(2);
+    Serial.println(potValue);
+}
+
+{% endhighlight %}
+
+<h3>Dokumentasi</h3>
+![Percobaan-1](/assets/embedded/modul4/percobaan1.jpg){:class="img-responsive"}
+<br><br>
+![Percobaan-2](/assets/embedded/modul4/percobaan2.jpg){:class="img-responsive"}
+<br><br>
+<video width="320" height="240" controls>
+  <source src="/assets/embedded/modul4/percobaan1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video> 
+<br><br><br>
+
+<h2>Tugas</h2>
+<hr>
+<h3>Tujuan</h3>
+Seperti pada percobaan sebelumnya dan ditambahkan dengan 7-Segment sebagai indikator intensitas cahaya. 
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+int val[] = {B11000000, B11111001, B10100100, B10110000, B10011001, B10010010, B10000010, B11111000, B10000000, B10010000};
+int potPin = A0;
+int ledPin = 9;
+int potValue = 0;
+int ledValue = 0;
+
+void setup() {
+    // put your setup code here, to run once:
+    DDRD = B11111111;
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    potValue = analogRead(potPin);
+    ledValue = map(potValue, 0, 1023, 0, 255);
+    analogWrite(ledPin, ledValue);
+    PORTD = val[map(potValue, 0, 1023, 0, 9)];
+    delay(2);
+}
+
+{% endhighlight %}
+
+<h3>Dokumentasi</h3>
+![Tugas-1](/assets/embedded/modul4/tugas1.jpg){:class="img-responsive"}
+<br><br>
+![Tugas-2](/assets/embedded/modul4/tugas2.jpg){:class="img-responsive"}
+<br><br>
+<video width="320" height="240" controls>
+  <source src="/assets/embedded/modul4/tugas1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video> 

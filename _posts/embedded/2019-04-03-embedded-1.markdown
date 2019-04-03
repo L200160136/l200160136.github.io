@@ -64,7 +64,7 @@ void loop() {
 {% endhighlight %}
 
 <h3>Dokumentasi</h3>
-![Tugas-1sd](/assets/embedded/modul1/tugas1.jpg){:class="img-responsive"}
+![Tugas-1](/assets/embedded/modul1/tugas1.jpg){:class="img-responsive"}
 <br><br><br>
 <h2>Tugas 2</h2>
 <hr>

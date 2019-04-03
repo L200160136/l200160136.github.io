@@ -1,0 +1,93 @@
+---
+layout: post
+title:  "Praktikum Sistem Embedded Modul 3"
+date:   2019-04-03 16:47:00 +0700
+categories: embedded
+permalink: "/:categories/:title"
+---
+
+<h2>Alat yang diperlukan:</h2>
+<hr>
+
+<ul>
+    <li>Board Arduino</li>
+    <li>7-Segment</li>
+    <li>Resistor 1K Ohm</li>
+    <li>Breadboard</li>
+</ul>
+
+<h2>Percobaan</h2>
+<hr>
+<h3>Tujuan</h3>
+Membuat 7-Segment menampilkan angka dari 0 hingga 9 dengan delay 1 detik.
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+int val[] = {B11000000, B11111001, B10100100, B10110000, B10011001, B10010010, B10000010, B11111000, B10000000, B10010000};
+
+void setup() {
+    // put your setup code here, to run once:
+    DDRD = B11111111;
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    for(int i = 0; i < 10; i++)
+    {
+        PORTD = val[i];
+        delay(1000);
+    }
+    
+}
+
+{% endhighlight %}
+
+<h3>Dokumentasi</h3>
+![Percobaan-1](/assets/embedded/modul3/percobaan1.jpg){:class="img-responsive"}
+<br><br>
+![Percobaan-2](/assets/embedded/modul3/percobaan2.jpg){:class="img-responsive"}
+<br><br>
+<video width="320" height="240" controls>
+  <source src="/assets/embedded/modul3/percobaan1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video> 
+<br><br><br>
+
+<h2>Tugas</h2>
+<hr>
+<h3>Tujuan</h3>
+Membuat 7-Segment menampilkan angka dari 0 hingga 9 dengan potensio sebagai controlnya.
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+int val[] = {B11000000, B11111001, B10100100, B10110000, B10011001, B10010010, B10000010, B11111000, B10000000, B10010000};
+int sensorPin = A0;
+int sensorValue = 0;
+int segmenValue = 0;
+
+void setup() {
+    // put your setup code here, to run once:
+    DDRD = B11111111;
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    sensorValue = analogRead(sensorPin);
+    segmenValue = sensorValue/113.0;
+    PORTD = val[segmenValue];
+    delay(100);
+}
+
+{% endhighlight %}
+
+<h3>Dokumentasi</h3>
+![Tugas](/assets/embedded/modul3/tugas1.jpg){:class="img-responsive"}
+<br><br>
+<video width="320" height="240" controls>
+  <source src="/assets/embedded/modul3/tugas1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video> 

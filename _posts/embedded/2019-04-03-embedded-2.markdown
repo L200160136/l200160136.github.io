@@ -1,0 +1,109 @@
+---
+layout: post
+title:  "Praktikum Sistem Embedded Modul 2"
+date:   2019-04-03 16:41:26 +0700
+categories: embedded
+permalink: "/:categories/:title"
+---
+
+<h2>Alat yang diperlukan:</h2>
+<hr>
+
+<ul>
+    <li>Board Arduino</li>
+    <li>LED</li>
+    <li>Resistor 220 Ohm</li>
+    <li>Breadboard</li>
+    <li>Potensiometer</li>
+</ul>
+
+<h2>Tugas 1</h2>
+<hr>
+<h3>Tujuan</h3>
+Menggunakan 5 buah LED sebagai indikator dari posisi putaran potensiometer. LED pertama menyala saat hasil baca 0-200, LED kedua saat 201-400, LED ketiga saat 401-600, LED keempat saat 601-800, dan LED kelima lebih dari 800.
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+int ledPins [] = {
+    13, 12, 8, 7, 4
+    };
+    int pinCount = 5;
+    int sensorPin = A0;
+    int sensorValue = 0;
+    int ledP = 0;
+    void setup() {
+    // put your setup code here, to run once:
+    for (int thisPin = 0; thisPin < pinCount; thisPin++){
+        pinMode(ledPins[thisPin], OUTPUT);
+    }
+    Serial.begin(9600);
+    }
+    
+    void loop() {
+    // put your main code here, to run repeatedly:
+    sensorValue = analogRead(sensorPin);
+    if (sensorValue<=200) {
+        ledP = 0;
+    }
+    else if (sensorValue>200&&sensorValue<=400)
+    {
+        ledP = 1;
+    }
+    else if (sensorValue>400&&sensorValue<=600)
+    {
+        ledP = 2;
+    }
+    else if (sensorValue>600&&sensorValue<=800)
+    {
+        ledP = 3;
+    }
+    else
+    {
+        ledP = 4;
+    }
+    digitalWrite(ledPins[ledP], HIGH);
+    for (int offPin = ledP+1; offPin < pinCount; offPin++){
+        digitalWrite(ledPins[offPin], LOW);
+    }
+    }
+
+{% endhighlight %}
+
+<h3>Dokumentasi</h3>
+![Tugas-1](/assets/embedded/modul2/tugas1.jpg){:class="img-responsive"}
+<br><br><br>
+
+<h2>Tugas 2</h2>
+<hr>
+<h3>Tujuan</h3>
+Menambahkan 1 buah LED untuk diatur tingkat kecerahannya dan menggabungkannya dengan rangkaian dari tugas 1. Sehingga saat potensiometer diputar maka 5 indikator LED dan LED dengan pengaturan tingkat kecerahan akan bekerja sesuai dengan posisi potensiometer.
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+int potPin = A0;
+int ledPin = 9;
+int potValue = 0;
+int ledValue = 0;
+
+void setup() {
+    // put your setup code here, to run once:
+    Serial.begin(9600);
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    potValue = analogRead(potPin);
+    ledValue = map(potValue, 350, 800, 0, 255);
+    analogWrite(ledPin, ledValue);
+    delay(2);
+    Serial.println(potValue);
+}
+
+{% endhighlight %}
+
+<h3>Dokumentasi</h3>
+![Tugas-1](/assets/embedded/modul2/tugas2.jpg){:class="img-responsive"}

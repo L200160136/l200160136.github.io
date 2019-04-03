@@ -1,9 +1,7 @@
 ---
-layout: post
-title:  "Embedded"
-date:   2019-04-03 10:27:26 +0700
-categories: embedded
-permalink: "/:categories"
+layout: page
+title:  Embedded
+permalink: /embedded/
 ---
 
 {% for post in site.categories.embedded %}
