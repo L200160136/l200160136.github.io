@@ -1,0 +1,108 @@
+---
+layout: post
+title:  "Praktikum Sistem Embedded Modul 1"
+date:   2019-04-03 10:27:26 +0700
+categories: embedded
+permalink: "/:categories/:title"
+---
+
+<h2>Alat yang diperlukan:</h2>
+<hr>
+
+<ul>
+    <li>Board Arduino</li>
+    <li>LED</li>
+    <li>Resistor 220 Ohm</li>
+    <li>Breadboard</li>
+</ul>
+
+<h2>Tugas 1</h2>
+<hr>
+<h3>Tujuan</h3>
+Membuat Animasi sederhana menggunakan 5 buah LED.
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+int timer = 100;
+int ledPins [] = {
+    13, 12, 8, 7, 4
+};
+int pinCount = 5;
+void setup() {
+    // put your setup code here, to run once:
+    for (int thisPin = 0; thisPin < pinCount; thisPin++){
+    pinMode(ledPins[thisPin], OUTPUT);
+    }
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    // turn the pin on:
+    digitalWrite(ledPins[thisPin], HIGH);
+    digitalWrite(ledPins[thisPin+1], HIGH);
+    delay(timer);
+    // turn the pin off:
+    digitalWrite(ledPins[thisPin], LOW);
+    digitalWrite(ledPins[thisPin+1], LOW);
+
+    }
+
+    // loop from the highest pin to the lowest:
+    for (int thisPin = pinCount - 1; thisPin >= 0; thisPin--) {
+    // turn the pin on:
+    digitalWrite(ledPins[thisPin], HIGH);
+    digitalWrite(ledPins[thisPin+1], HIGH);
+    delay(timer);
+    // turn the pin off:
+    digitalWrite(ledPins[thisPin], LOW);
+    digitalWrite(ledPins[thisPin+1], LOW);
+    }
+}
+{% endhighlight %}
+
+<h3>Dokumentasi</h3>
+![Tugas-1sd](/assets/embedded/modul1/tugas1.jpg){:class="img-responsive"}
+<br><br><br>
+<h2>Tugas 2</h2>
+<hr>
+<h3>Tujuan</h3>
+Membuat Animasi sederhana menggunakan 5 buah LED.
+
+<h3>Kode Program</h3>
+
+{% highlight c %}
+
+const int buttonPin = 2;
+int buttonState = 0;
+int ledPins [] = {
+    13, 12, 8, 7, 4
+};
+                
+void setup() {
+    for (int thisPin = 0; thisPin < pinCount; thisPin++){
+        pinMode(ledPins[thisPin], OUTPUT);
+    }
+    pinMode(buttonS, INPUT);
+}
+                
+void loop() {
+    buttonState = digitalRead(buttonS);
+    if(buttonState == HIGH){
+        digitalWrite(13, LOW);
+        digitalWrite(12, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, HIGH);
+        digitalWrite(4, HIGH);
+    }else{
+        digitalWrite(13, HIGH);
+        digitalWrite(12, HIGH);
+        digitalWrite(8, HIGH);
+        digitalWrite(7, LOW);
+        digitalWrite(4, LOW);
+    }
+}
+
+{% endhighlight %}
