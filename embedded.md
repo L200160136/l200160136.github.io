@@ -8,7 +8,7 @@ permalink: /embedded/
 {% for post in site.categories.embedded %}
   <li>
     <article>
-      <span class="post-meta">{{ post.date | date: "%m %d, %Y" }}</span>
+      <span class="post-meta">{{ post.date | date: "%b %d, %Y" }}</span>
       <h3><a href="{{ post.url }}" class="post-link">{{ post.title }}</a></h3>
       <p>{{ post.summary }}</p>
     </article>
