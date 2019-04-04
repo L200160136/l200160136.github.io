@@ -4,6 +4,7 @@ title:  "Praktikum Sistem Embedded Modul 1"
 date:   2019-04-03 10:27:26 +0700
 categories: embedded
 permalink: "/:categories/:title"
+background: '/assets/embedded/modul1/tugas1.jpg'
 ---
 
 <h2>Alat yang diperlukan:</h2>
