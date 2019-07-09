@@ -2,7 +2,7 @@
 layout: post
 title:  "Android Volley"
 date:   2019-07-09 13:40:00 +0700
-categories: android
+categories: mobile
 ---
 
 <h2>1. Buat project baru, tambahkan line ini di gradle App</h2>
